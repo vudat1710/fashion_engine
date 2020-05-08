@@ -1,0 +1,18 @@
+.fixed-content {
+    min-height:100%;
+    position:fixed;
+    overflow-y:scroll;
+    overflow-x:hidden;
+} 
+
+@media only screen and (max-width: 800px) {
+    .header-image {
+        width: 50%;
+        height: auto;
+        transform: translateX(50%) translateY(0);
+    }
+    .small-resize {
+        height: 20px;
+        width: 10px;
+    }
+  }

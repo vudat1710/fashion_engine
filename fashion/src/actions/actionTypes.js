@@ -1,0 +1,3 @@
+//SEARCH ACTION
+export const GET_SEARCH_RESULT = 'GET_SEARCH_RESULT';
+export const GET_ERRORS = 'GET_ERRORS';
