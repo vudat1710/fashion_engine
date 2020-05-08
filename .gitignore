@@ -2,15 +2,15 @@
 
 # dependencies
 fashion/node_modules
-/.pnp
+fashion/.pnp
 .pnp.js
 package-lock.json
 
 # testing
-/coverage
+fashion/coverage
 
 # production
-/build
+fashion/build
 
 # misc
 .DS_Store
