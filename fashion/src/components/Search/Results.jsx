@@ -111,7 +111,7 @@ class Search extends Component {
                         {Content}
                     </div>
                     <div style={{ height: 30 }}></div>
-                    <Pagination ref={this.pagination} totalRecords={totalData} pageLimit={6} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+                    <Pagination ref={this.pagination} totalRecords={totalData} pageLimit={12} pageNeighbours={1} onPageChanged={this.onPageChanged} />
                     <div style={{ height: 50 }}></div>
                 </div>
             </>

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Details.css';
-import './Star.scss'
+import './Star.scss';
+import { Link } from 'react-router-dom';
 
 class Details extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class Details extends Component {
             categories: [],
             description: '',
             image_urls: [],
+            rating_star: 0,
             shop_info: {
                 rating_bad: 0,
                 cancellation_rate: 0,
@@ -69,7 +71,7 @@ class Details extends Component {
 
     render() {
         const { brand, price, price_before_discount, description, currency, item_rating, liked_count,
-            name, options, sex, download_slot, categories, image_urls, shop_info, post_url } = this.state;
+            name, options, sex, download_slot, categories, image_urls, shop_info, post_url, rating_star } = this.state;
 
         let images = image_urls.map((url, i) => {
             if (i == 0) {
@@ -175,7 +177,11 @@ class Details extends Component {
                                     {download_slot}
                                 </h5>
                                 <div className="action">
-                                    <a className="add-to-cart btn btn-default" href={post_url}>TRUY CẬP BÀI VIẾT</a>
+                                    <div className="row">
+                                        <div className="col-lg-6 col-md-12 col-sm-12">
+                                            <a className="add-to-cart btn btn-default" href={post_url}>TRUY CẬP BÀI VIẾT</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -211,7 +217,7 @@ class Details extends Component {
                                         <div className="_3Lybjn d-flex justify-content-center align-items-center">Đánh giá:</div>
                                     </div>
                                     <div className="col-auto">
-                                        <div className="_3Lybjn d-flex justify-content-center align-items-center">{shop_info.response_star}/5 sao</div>
+                                        <div className="_3Lybjn d-flex justify-content-center align-items-center">{Number((shop_info.rating_star).toFixed(1))}/5 sao</div>
                                     </div>
                                 </div>
                             </div>
@@ -254,6 +260,11 @@ class Details extends Component {
                         </div>
                     </div>
                 </div>
+                <div style={{ height: 10 }}></div>
+                <div className="col-lg-6 col-md-12 col-sm-12">
+                    <Link className="add-to-cart btn btn-default" to='/'>TRỞ VỀ TRANG CHỦ</Link>
+                </div>
+                <div style={{ height: 30 }}></div>
             </div>
         );
     };
