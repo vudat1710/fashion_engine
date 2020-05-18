@@ -24,3 +24,9 @@ yarn-debug.log*
 yarn-error.log*
 
 .vscode
+/models/pretrained_efficientnet/
+.idea
+/data/
+/models/
+/.ipynb_checkpoints
+/junk/
