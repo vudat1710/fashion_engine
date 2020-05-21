@@ -4,6 +4,7 @@ import { getSearchResult } from '../../actions/search.action'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import BaseImage from '../../image/is-the-palmer-report-fake-news-6.png';
+import FileBase64 from 'react-file-base64';
 
 class Search extends Component {
     constructor(props) {
@@ -14,6 +15,10 @@ class Search extends Component {
             inputImage: '',
             numResults: 10
         }
+    }
+
+    getFiles(file) {
+        this.setState({ inputImage: file.base64 })
     }
 
     onChange = e => {
@@ -41,9 +46,6 @@ class Search extends Component {
 
     async onSearch(e) {
         e.preventDefault();
-        var canvas = document.createElement('canvas'), ctx = canvas.getContext('2d');
-        var uri = canvas.toDataURL('image/png'), b64 = uri.replace(/^data:image.+;base64,/, '');
-        this.state.inputImage = b64;
         await this.props.getSearchResult(this.state);
         if (this.props.result.isChange) {
             this.props.history.push('/results')
@@ -70,7 +72,9 @@ class Search extends Component {
                         <i className="fas fa-search h4 text-body"></i>
                     </div>
                     <div className="col">
-                        <input className="form-control form-control-lg form-control-borderless" type="file" placeholder="Upload an image to search" name="inputImage" onChange={e => this.onChange(e)} />
+                        <FileBase64
+                            multiple={false}
+                            onDone={this.getFiles.bind(this)} />
                     </div>
                     <div className="col-auto">
                         <button className="btn btn-lg btn-success" type="submit" onClick={(e) => { this.onSearch(e) }}>Search</button>

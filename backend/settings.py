@@ -1,0 +1,10 @@
+APP_BIND_ADDRESS = 'localhost'
+APP_BIND_PORT = 5000
+SOLR_POST_PATH = 'http://localhost:8983/solr/multimedia'
+SOLR_SHOP_PATH = 'http://localhost:8983/solr/multimedia_shops'
+INDEX_PATH = '/home/vudat1710/Downloads/Courses/HCSDLDPT/fashion_engine/backend/dump/dump_index_resnet.pkl'
+LEARNER_PATH = '/home/vudat1710/Downloads/Courses/HCSDLDPT/data_fashion/'
+MODEL_FILE_NAME = 'res50_sz150_best_stage3_export.pkl' 
+IMAGE_IDS_FN = '/home/vudat1710/Downloads/Courses/HCSDLDPT/data_fashion/all_feat.list' 
+IMAGE_INFO_FN = '/home/vudat1710/Downloads/Courses/HCSDLDPT/data_fashion/all_images_path.csv'
+FEATURE_MODEL = '/home/vudat1710/Downloads/Courses/HCSDLDPT/data_fashion/features_resnet50.npy' 
