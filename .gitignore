@@ -35,3 +35,5 @@ yarn-error.log*
 =1.0.0
 /backend/__pycache__
 /backend/dump/*
+.test.py.swo
+/__pycache__

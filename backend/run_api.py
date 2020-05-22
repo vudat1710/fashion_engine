@@ -45,13 +45,10 @@ def get_app():
         results = connection.search(query_text, rows=num_results)
         return jsonify(results)
 
-    return app
-
     @app.route("/api/searchImage", methods=['POST'])
     def search_image():
         data = json.loads(request.data)
-        print(data)
-        base64_str = str(data["inputImage"])
+        base64_str = str(data["inputImage"]).split(',')[1]
         num_results = int(data["numResults"])
         image_feature = feature_extractor.extract_feature(base64_str, base_64=True)
         results = search_engine.search(image_feature[None], num_results=num_results)[0]
@@ -60,10 +57,13 @@ def get_app():
             search_params = itemid.split("_")
             post = connection.search_post_id(search_params[1], search_params[0])
             res.append(post)
+        print(res)
         response = jsonify(res)
         response.headers.add('Access-Control-Allow-Origin', '*')
 
         return response
+
+    return app
             
 
 
