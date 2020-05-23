@@ -10,8 +10,6 @@ from .feature_extractor import FeatureHook, FeatureExtractor
 from .faiss_index import ImageSearchEngine, load_invert_indexed, load_npy_file
 from .settings import INDEX_PATH, LEARNER_PATH, MODEL_FILE_NAME, IMAGE_IDS_FN, IMAGE_INFO_FN, FEATURE_MODEL
 
-# define INDEX_PATH, LEARNER_PATH, MODEL_FILE_NAME, IMAGE_IDS_FN, IMAGE_INFO_FN
-# install fastai
 
 def get_app():
     app = Flask(__name__)

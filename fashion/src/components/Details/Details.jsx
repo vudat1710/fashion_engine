@@ -31,7 +31,7 @@ class Details extends Component {
         const itemid = parseInt(this.props.match.params.itemid);
         const searchData = this.props.result.searchData;
         const data = searchData.find(x => x.itemid[0] === itemid);
-        console.log(searchData)
+
         await this.setState({
             ...this.state,
             price: data.price[0],
@@ -53,53 +53,9 @@ class Details extends Component {
 
     render() {
         const { price, price_before_discount, description, currency, item_rating, liked_count,
-            name, options, sex, platform, categories, images, shop_info, post_url, rating_star } = this.state;
+            name, options, sex, platform, categories, images, shop_info, post_url } = this.state;
 
-        let shopContent = Object.keys(shop_info).length === 0 ? (
-            <></>
-        ) : (
-                <div className="container-fluid" style={{ background: "rgba(0,0,0,.02)" }}>
-                    <div className="wrapper row">
-                        <div className="_2S9T8Y">
-                            <div className="col-auto">
-                                <div className="_3Lybjn d-flex justify-content-center align-items-center">Tên shop:</div>
-                            </div>
-                            <div className="col-auto">
-                                <div className="_3Lybjn d-flex justify-content-center">{shop_info.name[0]}</div>
-                            </div>
-                            {/* <div className="_1h7HJr d-flex justify-content-center">{shop_info.account.following_count}{' '}người theo dõi</div> */}
-                        </div>
-                    </div>
-                    <br /><br />
-                    <div className="wrapper row">
-                        <div className="col-6">
-                            <div className="_2S9T8Y">
-                                <div className="row">
-                                    <div className="col-auto">
-                                        <div className="_3Lybjn d-flex justify-content-center align-items-center">Đánh giá:</div>
-                                    </div>
-                                    <div className="col-auto">
-                                        <div className="_3Lybjn d-flex justify-content-center align-items-center">{Number((shop_info.rating_star[0]).toFixed(1))}/5 sao</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-6">
-                            <div className="_2S9T8Y">
-                                <div className="row">
-                                    <div className="col-auto">
-                                        <div className="_3Lybjn d-flex justify-content-center align-items-center">Địa điểm:</div>
-                                    </div>
-                                    <div className="col-auto">
-                                        <div className="_3Lybjn d-flex justify-content-center align-items-center">{shop_info.shop_location[0]}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style={{ height: 10 }}></div>
-                </div>
-            )
+        let shop_name = shop_info.name === undefined ? ("") : (shop_info.name[0]);
 
         let _images = images.map((path, i) => {
             if (i == 0) {
@@ -118,7 +74,7 @@ class Details extends Component {
         let colors = Object.keys(options).length === 0 ? (
             <></>
         ) : (
-                options["Màu sắc"].map((s, ) => {
+                options[Object.keys(options)[0]].map((s, ) => {
                     return (
                         <button className="product-variation">{s}</button>
                     )
@@ -128,12 +84,22 @@ class Details extends Component {
         let sizes = Object.keys(options).length === 0 ? (
             <></>
         ) : (
-                options["Kích thước"].map((s, ) => {
-                    return (
-                        <button className="product-variation">{s}</button>
+                (Object.keys(options)[1] !== undefined) ? (
+                    options[Object.keys(options)[1]].map((s, ) => {
+                        return (
+                            <button className="product-variation">{s}</button>
+                        )
+                    })
+                ) : (
+                        <></>
                     )
-                })
             )
+
+        let _categories = categories.map((c, ) => {
+            return (
+                <button className="product-variation">{c}</button>
+            )
+        })
 
         let miniImages = images.map((path, i) => {
             if (i == 0) {
@@ -193,14 +159,14 @@ class Details extends Component {
                                 <h5 className="colors">Màu:{'     '}
                                     {colors}
                                 </h5>
+                                <h5 className="colors">Loại:{'     '}
+                                    {_categories}
+                                </h5>
                                 <h5 className="addition">Giới tính:{'     '}
                                     {sex}
-                                    {/* </h5>
-                                <h5 className="addition">Đánh giá tốt:{'     '}
-                                    {shop_info.rating_good}
                                 </h5>
-                                <h5 className="addition">Đánh giá không tốt:{'     '}
-                                    {shop_info.rating_bad} */}
+                                <h5 className="addition">Tên shop:{'     '}
+                                    {shop_name}
                                 </h5>
                                 <h5 className="addition2">Platform:{'     '}
                                     {platform}
@@ -216,9 +182,6 @@ class Details extends Component {
                         </div>
                     </div>
                 </div>
-                <div style={{ height: 30 }}></div>
-                <div class="kP-bM3">THÔNG TIN SHOP</div>
-                {shopContent}
                 <div style={{ height: 30 }}></div>
                 <div class="kP-bM3">MÔ TẢ SẢN PHẨM</div>
                 <div className="container-fluid" style={{ background: "rgba(0,0,0,.02)" }}>

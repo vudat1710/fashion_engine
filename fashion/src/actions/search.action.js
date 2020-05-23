@@ -13,9 +13,9 @@ export const getSearchResult = (searchParams) => async dispatch => {
     if (searchParams["searchType"] === "text") {
         res = await axios.post(`http://0.0.0.0:5000/api/searchText`, searchParams);
     } else {
-        console.log(searchParams)
         res = await axios.post(`http://0.0.0.0:5000/api/searchImage`, searchParams, axiosConfig);
     }
+
     dispatch({
         type: GET_SEARCH_RESULT,
         payload: {
