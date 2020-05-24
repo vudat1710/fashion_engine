@@ -30,24 +30,24 @@ class Details extends Component {
     async componentDidMount() {
         const itemid = parseInt(this.props.match.params.itemid);
         const searchData = this.props.result.searchData;
-        const data = searchData.find(x => x.itemid[0] === itemid);
+        const data = searchData.find(x => x.itemid === itemid);
 
         await this.setState({
             ...this.state,
-            price: data.price[0],
-            price_before_discount: data.price_before_discount[0],
-            description: data.description[0],
-            currency: data.currency[0],
-            item_rating: data.item_rating[0],
-            liked_count: data.liked_count[0],
-            name: data.name[0],
-            options: JSON.parse(data.options[0].replace(/'/g, "\"")),
-            sex: data.sex[0],
-            platform: data.platform[0],
+            price: data.price,
+            price_before_discount: data.price_before_discount,
+            description: data.description,
+            currency: data.currency,
+            item_rating: data.item_rating,
+            liked_count: data.liked_count,
+            name: data.name,
+            options: JSON.parse(data.options.replace(/'/g, "\"")),
+            sex: data.sex,
+            platform: data.platform,
             categories: data.categories,
             images: data.images,
             shop_info: data.shop_info,
-            post_url: data.post_url[0],
+            post_url: data.post_url,
         })
     }
 
@@ -55,7 +55,7 @@ class Details extends Component {
         const { price, price_before_discount, description, currency, item_rating, liked_count,
             name, options, sex, platform, categories, images, shop_info, post_url } = this.state;
 
-        let shop_name = shop_info.name === undefined ? ("") : (shop_info.name[0]);
+        let shop_name = shop_info.name === undefined ? ("") : (shop_info.name);
 
         let _images = images.map((path, i) => {
             if (i == 0) {

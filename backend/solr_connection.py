@@ -22,8 +22,9 @@ class SolrConnection:
             params['fl'] = '*,score'
         query = self.build_query(text=text)
         results = list(self.connection_post.search(q=query, **params))
+        
         for result in results:
-            result["shop_info"] = self.search_exact_id(result["shopid"][0])
+            result["shop_info"] = self.search_exact_id(result["shopid"])
 
 
         return sorted(results, key=itemgetter('item_rating'), reverse=True)
@@ -34,7 +35,7 @@ class SolrConnection:
     def search_post_id(self, post_id, platform):
         platform = platform + '.vn'
         result = list(self.connection_post.search(q=f'itemid:{post_id} AND platform:"{platform}"'))[0]
-        result["shop_info"] = self.search_exact_id(result["shopid"][0])
+        result["shop_info"] = self.search_exact_id(result["shopid"])
 
         return result
 
@@ -42,7 +43,7 @@ class SolrConnection:
         tokens = ner(text)
 
         query_tokens = [
-            f'(name:"{token}" OR description:"{token}")'
+            f'(name_tokenized:"{token}")'
             for token, _, _, ner_tag in tokens
         ]
 

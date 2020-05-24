@@ -20,12 +20,13 @@ def read_jsonl_file(fn):
             docs.append(json.loads(line))
         f.close()
     
-    tok_fields = ["name", "description"]
+    tok_field = "name"
 
     for doc in docs:
-        for field in tok_fields:
-            if field in doc.keys():
-                doc[field] = tokenize(doc[field])
+        if tok_field in doc.keys():
+            doc["name_tokenized"] = tokenize(doc[tok_field])
+        else:
+            doc["name_tokenized"] = ""
 
     return docs
 

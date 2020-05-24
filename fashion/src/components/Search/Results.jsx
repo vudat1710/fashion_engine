@@ -64,20 +64,20 @@ class Search extends Component {
             <></>
         ) : (currentData.map((data, ) => {
             return (
-                    <div className="col-lg-3 col-md-4 col-sm-6" key={data.itemid[0]}>
+                    <div className="col-lg-3 col-md-4 col-sm-6" key={data.itemid}>
                         <article className="card card--1">
                             <div className="card__img"></div>
-                            <Link to={`/product/${data.itemid[0]}`} className="card-link">
-                                <div className="card__img--hover" style={{ backgroundImage: "url(" + process.env.PUBLIC_URL + "/images/" + data.platform[0].split(".")[0] + "/images/" + data.images[0] + ")" }}></div>
+                            <Link to={`/product/${data.itemid}`} className="card-link">
+                                <div className="card__img--hover" style={{ backgroundImage: "url(" + process.env.PUBLIC_URL + "/images/" + data.platform.split(".")[0] + "/images/" + data.images[0] + ")" }}></div>
                             </Link>
                             <div className="card__info">
-                                <h3 className="card__title">{data.name[0]}</h3>
+                                <h3 className="card__title">{data.name}</h3>
                                 {/* <span className="card__category">{data.brand}</span> */}
-                                <span className="card__by">trên <a href="#" className="card__author" title="author">{data.platform[0]}</a></span>
+                                <span className="card__by">trên <a href="#" className="card__author" title="author">{data.platform}</a></span>
                                 <div className="_2lBkmX">
-                                    <div className="_1w9jLI QbH7Ig U90Nhh">{data.currency[0]}{data.price_before_discount[0]}</div>
+                                    <div className="_1w9jLI QbH7Ig U90Nhh">{data.currency}{data.price_before_discount}</div>
                                     <div className="_1w9jLI _37ge-4 _2ZYSiu" styles={{ maxWidth: "calc(100% - 22px)" }}>
-                                        <span className="lwZ9D8">{data.currency[0]}</span><span className="_341bF0">{data.price[0]}</span>
+                                        <span className="lwZ9D8">{data.currency}</span><span className="_341bF0">{data.price}</span>
                                     </div>
                                 </div>
                             </div>
