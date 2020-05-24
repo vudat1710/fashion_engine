@@ -4,6 +4,7 @@ import { getSearchResult } from '../../actions/search.action'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import BaseImage from '../../image/is-the-palmer-report-fake-news-6.png';
+import FileBase64 from 'react-file-base64';
 
 
 class Header extends Component {
@@ -13,7 +14,7 @@ class Header extends Component {
             inputSearch: '',
             searchType: "text",
             inputImage: '',
-            numResults: 10
+            numResults: 12
         }
     }
 
@@ -26,6 +27,10 @@ class Header extends Component {
             inputImage: inputImage,
             numResults: numResults
         })
+    }
+
+    getFiles(file) {
+        this.setState({ inputImage: file.base64 })
     }
 
     onChange = e => {
@@ -53,9 +58,6 @@ class Header extends Component {
 
     async onSearch(e) {
         e.preventDefault();
-        var canvas = document.createElement('canvas'), ctx = canvas.getContext('2d');
-        var uri = canvas.toDataURL('image/png'), b64 = uri.replace(/^data:image.+;base64,/, '');
-        this.state.inputImage = b64;
         await this.props.getSearchResult(this.state);
         const { searchData } = this.props;
         searchData && searchData();
@@ -81,7 +83,9 @@ class Header extends Component {
                         <i className="fas fa-search h4 text-body"></i>
                     </div>
                     <div className="col">
-                        <input className="form-control form-control-lg form-control-borderless" type="file" placeholder="Upload an image to search" name="inputImage" onChange={e => this.onChange(e)} />
+                    <FileBase64
+                            multiple={false}
+                            onDone={this.getFiles.bind(this)} />
                     </div>
                     <div className="col-auto">
                         <button className="btn btn-lg btn-success" type="submit" onClick={(e) => { this.onSearch(e) }}>Search</button>
@@ -123,9 +127,10 @@ class Header extends Component {
                             </div>
                             <div className="col-auto">
                                 <select className="btn btn-lg btn-info" name="numResults" onChange={e => this.onChange(e)}>
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="30">30</option>
+                                    <option value="12">12</option>
+                                    <option value="24">24</option>
+                                    <option value="36">36</option>
+				    <option value="48">48</option>
                                 </select>
                             </div>
                         </div>

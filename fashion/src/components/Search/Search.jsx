@@ -13,7 +13,7 @@ class Search extends Component {
             inputSearch: '',
             searchType: "text",
             inputImage: '',
-            numResults: 10
+            numResults: 12
         }
     }
 
@@ -97,9 +97,11 @@ class Search extends Component {
                             </div>
                             <div className="col-2">
                                 <select className="btn btn-lg btn-info" name="numResults" onChange={e => this.onChange(e)}>
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="30">30</option>
+                                    <option value="12">12</option>
+                                    <option value="24">24</option>
+                                    <option value="36">36</option>
+				    <option value="48">48</option>
+
                                 </select>
                             </div>
                         </div>
