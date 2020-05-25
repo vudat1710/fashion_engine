@@ -1,0 +1,14 @@
+lxml==4.4.1
+fastai==1.0.61
+pandas==0.23.3
+Flask==1.0.2
+numpy==1.16.2
+pysolr==3.8.1
+Werkzeug==0.16.0
+faiss_cpu==1.6.3
+underthesea==1.1.15
+Flask_Cors==3.0.8
+backend==0.2.4.1
+faiss==1.5.3
+python_dateutil==2.8.1
+scikit_learn==0.23.1
