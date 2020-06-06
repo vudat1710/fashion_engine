@@ -24,7 +24,7 @@ def read_jsonl_file(fn):
 
     for doc in docs:
         if tok_field in doc.keys():
-            doc["name_tokenized"] = tokenize(doc[tok_field], format="text")
+            doc["name_tokenized"] = tokenize(doc[tok_field])
         else:
             doc["name_tokenized"] = ""
 

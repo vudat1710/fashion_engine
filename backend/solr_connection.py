@@ -17,11 +17,14 @@ class SolrConnection:
         self.connection_shop.add(shops, commit=True)
 
     def search(self, text, rows=10, start=0, sort='score desc', return_score=False):
-        params = {'rows': rows, 'start': start, 'sort': sort}
-        if return_score:
-            params['fl'] = '*,score'
+        results = []
         query = self.build_query(text=text)
-        results = list(self.connection_post.search(q=query, **params))
+        query = query.split("OR")
+        for q in query:
+            params = {'rows': int(rows / len(query)), 'start': start, 'sort': sort}
+            if return_score:
+                params['fl'] = '*,score'
+            results.extend(list(self.connection_post.search(q=q, **params)))
         
         for result in results:
             result["shop_info"] = self.search_exact_id(result["shopid"])
@@ -44,19 +47,21 @@ class SolrConnection:
         keywords = ["platform", "sex", ":"]
         if "," in text:
             small_text = text.split(",")
-            for t in small_text:
-                tokens = word_tokenize(t, format="text").split(" ")
-                platform = ""
-                sex = ""
-                temp = keywords
-                if "platform" in t:
-                    platform = tokens[tokens.index("platform") + 2]
-                    temp.append(platform)
-                if "sex" in t:
-                    sex = tokens[tokens.index("sex") + 2]
-                    temp.append(sex)
-                tokens = [word for word in tokens if word not in temp]
-                search_list.append((tokens, platform, sex))
+        else:
+            small_text = [text]
+        for t in small_text:
+            tokens = word_tokenize(t, format="text").split(" ")
+            platform = ""
+            sex = ""
+            temp = keywords
+            if "platform" in t:
+                platform = tokens[tokens.index("platform") + 2]
+                temp.append(platform)
+            if "sex" in t:
+                sex = tokens[tokens.index("sex") + 2]
+                temp.append(sex)
+            tokens = [word for word in tokens if word not in temp]
+            search_list.append((tokens, platform, sex))
         query_tokens = []
         for tokens, platform, sex in search_list:
             q = [f'(name_tokenized:"{token}")'
@@ -67,4 +72,5 @@ class SolrConnection:
             if sex != "":
                 q += ' AND (sex:"{}")'.format(sex)
             query_tokens.append("({})".format(q))
+        print(' OR '.join(query_tokens))
         return ' OR '.join(query_tokens)
