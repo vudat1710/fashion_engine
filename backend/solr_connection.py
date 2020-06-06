@@ -40,11 +40,31 @@ class SolrConnection:
         return result
 
     def build_query(self, text):
-        tokens = ner(text)
-
-        query_tokens = [
-            f'(name_tokenized:"{token}")'
-            for token, _, _, ner_tag in tokens
-        ]
-
-        return ' AND '.join(query_tokens)
+        search_list = []
+        keywords = ["platform", "sex", ":"]
+        if "," in text:
+            small_text = text.split(",")
+            for t in small_text:
+                tokens = word_tokenize(t, format="text").split(" ")
+                platform = ""
+                sex = ""
+                temp = keywords
+                if "platform" in t:
+                    platform = tokens[tokens.index("platform") + 2]
+                    temp.append(platform)
+                if "sex" in t:
+                    sex = tokens[tokens.index("sex") + 2]
+                    temp.append(sex)
+                tokens = [word for word in tokens if word not in temp]
+                search_list.append((tokens, platform, sex))
+        query_tokens = []
+        for tokens, platform, sex in search_list:
+            q = [f'(name_tokenized:"{token}")'
+            for token in tokens]
+            q = ' AND '.join(q)
+            if platform != "":
+                q += ' AND (platform:"{}")'.format(platform)
+            if sex != "":
+                q += ' AND (sex:"{}")'.format(sex)
+            query_tokens.append("({})".format(q))
+        return ' OR '.join(query_tokens)
