@@ -4,7 +4,7 @@ Posts and images retrieval engine for e-commerce data on multiple platforms on f
 
 # Setup environment and data
 
-- Python 3 and ReactJS preinstalled
+- Python 3 and npm preinstalled
 - Move to backend directory then run `pip install -r requirements.txt` to setup python environment for backend search engine
 - From outer directory, move to fashion directory then run `npm install` to install packages for frontend search engine.
 - Install Solr on your machine then create 2 new cores named multimedia (for posts data) and multimedia_shops (for shops data). Default port for solr service is **localhost:8983**
@@ -16,7 +16,7 @@ Posts and images retrieval engine for e-commerce data on multiple platforms on f
 - Push data to Solr cores: from outer directory, run `python -m backend.import_data`
 - Now we are good to go
 
-# Start program
+# Starting program
 
 - From outer directory, run `python -m backend.run_api` to start backend search APIs. Default port for backend services is **localhost:5000**
 - Move to `fashion` folder, run `npm start` to start frontend service. Default port for frontend service is **localhost:3000**
