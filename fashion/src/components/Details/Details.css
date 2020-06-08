@@ -66,6 +66,13 @@
     line-height: 1.5em;
 }
 
+.card__title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 50px;
+}
+
 @media screen and (min-width: 997px) {
     .wrapper {
         display: -webkit-box;

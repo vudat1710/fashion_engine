@@ -55,7 +55,7 @@ class SolrConnection:
             sex = ""
             temp = keywords
             if "platform" in t:
-                platform = tokens[tokens.index("platform") + 2]
+                platform = tokens[tokens.index("platform") + 2] + ".vn"
                 temp.append(platform)
             if "sex" in t:
                 sex = tokens[tokens.index("sex") + 2]
