@@ -61,6 +61,9 @@ class Details extends Component {
         if (platform === "shopee.vn") {
             price_ = Math.round(price / 1e8) * 1e3;
             price_before_discount_ = Math.round(price_before_discount / 1e8) * 1e3
+        } else {
+            price_ = price;
+            price_before_discount_ = price_before_discount;
         }
 
         let _images = images.map((path, i) => {
