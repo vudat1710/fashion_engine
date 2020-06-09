@@ -57,6 +57,11 @@ class Details extends Component {
 
         let shop_name = shop_info.name === undefined ? ("") : (shop_info.name);
 
+        if (platform === "shopee.vn") {
+            price = Math.round(price / 1e8) * 1e3;
+            price_before_discount = Math.round(price_before_discount / 1e8) * 1e3
+        }
+
         let _images = images.map((path, i) => {
             if (i == 0) {
                 return (
