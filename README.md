@@ -12,7 +12,7 @@ Posts and images retrieval engine for e-commerce data on multiple platforms on f
 - All required files include model for our search engine are available on: [This sharepoint](https://husteduvn-my.sharepoint.com/:f:/g/personal/thanh_lt163705_sis_hust_edu_vn/EnAhIy20OpNCuWZSqUTfHfwBTmW0QCji-EgQZZUmQqD1Uw?e=iSiAM3). Download these following 4 files: all_feat.list, all_images_path.csv, features_resnet50.npy, res50_sz150_best_stage3_export.pkl to your download folder
 - Move to `backend/` folder then change all paths in `settings.py` file corresponding to paths to your downloaded files above.
 - Download images data for this search engine on [This sharepoint](https://husteduvn-my.sharepoint.com/:u:/g/personal/thanh_lt163705_sis_hust_edu_vn/EchO3VtpXRFKmGq1z9UFPkIBN_AkZ9tjlkOThdNbUxF4RQ?e=W73ZdN). Then create relative path from this images folder to public folder in `fashion` directory by running the following command: `ln -s path_to_your_images_folder this_project_folder/fashion/public`
-- Download posts and shops data from [This sharepoint](https://husteduvn-my.sharepoint.com/:f:/g/personal/thanh_lt163705_sis_hust_edu_vn/EnAhIy20OpNCuWZSqUTfHfwBTmW0QCji-EgQZZUmQqD1Uw?e=iSiAM3) (2 js). Create `data` directory in outer directory then move these downloaded data to this folder
+- Download posts and shops data from [This sharepoint](https://husteduvn-my.sharepoint.com/:f:/g/personal/thanh_lt163705_sis_hust_edu_vn/EnAhIy20OpNCuWZSqUTfHfwBTmW0QCji-EgQZZUmQqD1Uw?e=iSiAM3) (2 jsonl files). Create `data` directory in outer directory then move these downloaded data to this folder
 - Push data to Solr cores: from outer directory, run `python -m backend.import_data`
 - Now we are good to go
 
