@@ -54,6 +54,7 @@ class Details extends Component {
     render() {
         const { price, price_before_discount, description, currency, item_rating, liked_count,
             name, options, sex, platform, categories, images, shop_info, post_url } = this.state;
+        let price_, price_before_discount_;
 
         let shop_name = shop_info.name === undefined ? ("") : (shop_info.name);
 
