@@ -37,3 +37,4 @@ yarn-error.log*
 /backend/dump/*
 .test.py.swo
 /__pycache__
+/backend/*.swp

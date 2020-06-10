@@ -59,7 +59,7 @@ class Search extends Component {
 
 
     render() {
-        const { allData, currentData } = this.state;
+        let { allData, currentData } = this.state;
         let Content = (allData.length === 0) ? (
             <></>
         ) : (currentData.map((data, ) => {
@@ -72,7 +72,7 @@ class Search extends Component {
                             </Link>
                             <div className="card__info">
                                 <h3 className="card__title">{data.name}</h3>
-                                {/* <span className="card__category">{data.brand}</span> */}
+                                <h3 className="card__category">Score: {data.score}</h3>
                                 <span className="card__by">trên <a href="#" className="card__author" title="author">{data.platform}</a></span>
                                 <div className="_2lBkmX">
                                     <div className="_1w9jLI QbH7Ig U90Nhh">{data.currency}{data.price_before_discount}</div>

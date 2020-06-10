@@ -61,10 +61,8 @@ class ImageSearchEngine:
             q = q[None]
         assert q.shape[1] == self.dim, f'query vectors must have dim = {self.dim}'
         similarity_scores, indices = self.index.search(q, num_results)
-        print(similarity_scores)
 
         results = [self.image_indices2posts(indices[i], similarity_scores[i]) for i in range(indices.shape[0])]
-
         return results
 
 

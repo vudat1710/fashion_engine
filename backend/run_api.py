@@ -54,8 +54,8 @@ def get_app():
         for itemid in results.keys():
             search_params = itemid.split("_")
             post = connection.search_post_id(search_params[1], search_params[0])
+            post["score"] = str(results[itemid][0]["score"])
             res.append(post)
-        print(res)
         response = jsonify(res)
         response.headers.add('Access-Control-Allow-Origin', '*')
 
