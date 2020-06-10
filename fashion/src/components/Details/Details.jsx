@@ -54,8 +54,17 @@ class Details extends Component {
     render() {
         const { price, price_before_discount, description, currency, item_rating, liked_count,
             name, options, sex, platform, categories, images, shop_info, post_url } = this.state;
+        let price_, price_before_discount_;
 
         let shop_name = shop_info.name === undefined ? ("") : (shop_info.name);
+
+        if (platform === "shopee.vn") {
+            price_ = Math.round(price / 1e8) * 1e3;
+            price_before_discount_ = Math.round(price_before_discount / 1e8) * 1e3
+        } else {
+            price_ = price;
+            price_before_discount_ = price_before_discount;
+        }
 
         let _images = images.map((path, i) => {
             if (i == 0) {
@@ -143,10 +152,10 @@ class Details extends Component {
                                     <div className="col-auto">
                                         <div className="row">
                                             <div className="col-6 d-flex justify-content-center">
-                                                <div class="_3_ISdg">{currency}{price_before_discount}</div>
+                                                <div class="_3_ISdg">{currency}{price_before_discount_}</div>
                                             </div>
                                             <div className="col-6 d-flex justify-content-center">
-                                                <div class="_3n5NQx">{currency}{price}</div>
+                                                <div class="_3n5NQx">{currency}{price_}</div>
                                             </div>
                                         </div>
                                     </div>

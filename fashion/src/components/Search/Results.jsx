@@ -63,6 +63,10 @@ class Search extends Component {
         let Content = (allData.length === 0) ? (
             <></>
         ) : (currentData.map((data, ) => {
+            if (data.platform === "shopee.vn") {
+                data.price = Math.round(data.price / 1e8) * 1e3;
+                data.price_before_discount = Math.round(data.price_before_discount / 1e8) * 1e3;
+            }
             return (
                     <div className="col-lg-3 col-md-4 col-sm-6" key={data.itemid}>
                         <article className="card card--1">
