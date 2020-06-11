@@ -183,7 +183,7 @@ class Details extends Component {
                                 <div className="action">
                                     <div className="row">
                                         <div className="col-lg-6 col-md-12 col-sm-12">
-                                            <a className="add-to-cart btn btn-default" href={post_url}>TRUY CẬP BÀI VIẾT</a>
+                                            <a className="add-to-cart btn btn-default" target='_blank' href={post_url}>TRUY CẬP BÀI VIẾT</a>
                                         </div>
                                     </div>
                                 </div>
