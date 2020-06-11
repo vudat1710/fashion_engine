@@ -4,7 +4,8 @@ const initState = {
     error: '',
     searchData: [],
     isChange: false,
-    searchParams: {}
+    searchParams: {},
+    searchType: "text"
 };
 
 export default (state = initState, {type, payload}) => {
@@ -12,9 +13,10 @@ export default (state = initState, {type, payload}) => {
         case GET_SEARCH_RESULT:
             return {
                 ...state,
-                searchData: payload.searchResults,
+                searchData: payload.searchResults.response,
                 searchParams: payload.searchParams,
-                isChange: true
+                isChange: true,
+                searchType: payload.searchResults.searchType
             };
         case GET_ERRORS:
             return {

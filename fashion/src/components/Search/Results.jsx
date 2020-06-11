@@ -17,7 +17,8 @@ class Search extends Component {
             allData: [],
             currentData: [],
             currentPage: null,
-            totalPages: null
+            totalPages: null,
+            searchType: "text",
         }
     }
 
@@ -25,6 +26,7 @@ class Search extends Component {
         this.setState({
             ...this.state,
             allData: this.props.result.searchData,
+            searchType: this.props.result.searchType
         })
     }
 
@@ -60,6 +62,7 @@ class Search extends Component {
 
     render() {
         let { allData, currentData } = this.state;
+        let searchType = this.props.result.searchType;
         let Content = (allData.length === 0) ? (
             <></>
         ) : (currentData.map((data, ) => {
@@ -67,6 +70,11 @@ class Search extends Component {
                 data.price = Math.round(data.price / 1e8) * 1e3;
                 data.price_before_discount = Math.round(data.price_before_discount / 1e8) * 1e3;
             }
+            let score = searchType === "image" ? (
+                <h3 className="card__category">Score: {data.score}</h3>
+            ) : (
+                <></>
+            )
             return (
                     <div className="col-lg-3 col-md-4 col-sm-6" key={data.itemid}>
                         <article className="card card--1">
@@ -76,7 +84,7 @@ class Search extends Component {
                             </Link>
                             <div className="card__info">
                                 <h3 className="card__title">{data.name}</h3>
-                                <h3 className="card__category">Score: {data.score}</h3>
+                                {score}
                                 <span className="card__by">trên <a href="#" className="card__author" title="author">{data.platform}</a></span>
                                 <div className="_2lBkmX">
                                     <div className="_1w9jLI QbH7Ig U90Nhh">{data.currency}{data.price_before_discount}</div>
