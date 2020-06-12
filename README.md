@@ -1,6 +1,6 @@
 # Fashion search engine
 
-Posts and images retrieval engine for e-commerce data on multiple platforms on fashion domain. Images are restricted as single type product or only a model wearing a product in an image. Data in this project is crawled from 3 e-commerce platforms: [Tiki.vn](tiki.vn), [Shopee.vn](shopee.vn), and [Sendo.vn](sendo.vn)
+Posts and images retrieval engine for e-commerce data on multiple platforms on fashion domain. Images are restricted as single type product or only a model wearing a product in an image. Data in this project is crawled from 3 e-commerce platforms: [Tiki.vn](tiki.vn), [Shopee.vn](shopee.vn), and [Sendo.vn](sendo.vn). Crawling code is available at `./ecommerce_crawler`. This crawling tool is created using scrapy and scrapy-splash. See more at how to run a scrapy tool at [this documentation](https://docs.scrapy.org/en/latest/intro/tutorial.html) (you need to install scrapy and scrapy-splash first in order to run this code).
 
 # Setup environment and data
 
