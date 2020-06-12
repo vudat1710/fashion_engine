@@ -63,15 +63,24 @@ class Search extends Component {
     render() {
         let { allData, currentData } = this.state;
         let searchType = this.props.result.searchType;
+        let price_, price_before_discount_;
         let Content = (allData.length === 0) ? (
             <></>
         ) : (currentData.map((data, ) => {
             if (data.platform === "shopee.vn") {
-                data.price = Math.round(data.price / 1e8) * 1e3;
-                data.price_before_discount = Math.round(data.price_before_discount / 1e8) * 1e3;
+                price_ = Math.round(data.price / 1e8) * 1e3;
+                price_before_discount_ = Math.round(data.price_before_discount / 1e8) * 1e3;
+            } else {
+                price_ = data.price;
+                price_before_discount_ = data.price_before_discount;
             }
             let score = searchType === "image" ? (
                 <h3 className="card__category">Score: {data.score}</h3>
+            ) : (
+                <></>
+            )
+            let price_before_discount = ((price_before_discount_ !== 0) && (price_before_discount_ !== price_)) ? (
+                <div className="_1w9jLI QbH7Ig U90Nhh">{data.currency}{price_before_discount_}</div>
             ) : (
                 <></>
             )
@@ -87,9 +96,9 @@ class Search extends Component {
                                 {score}
                                 <span className="card__by">trên <a href="#" className="card__author" title="author">{data.platform}</a></span>
                                 <div className="_2lBkmX">
-                                    <div className="_1w9jLI QbH7Ig U90Nhh">{data.currency}{data.price_before_discount}</div>
+                                    {price_before_discount}
                                     <div className="_1w9jLI _37ge-4 _2ZYSiu" styles={{ maxWidth: "calc(100% - 22px)" }}>
-                                        <span className="lwZ9D8">{data.currency}</span><span className="_341bF0">{data.price}</span>
+                                        <span className="lwZ9D8">{data.currency}</span><span className="_341bF0">{price_}</span>
                                     </div>
                                 </div>
                             </div>

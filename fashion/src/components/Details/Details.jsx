@@ -54,7 +54,7 @@ class Details extends Component {
     render() {
         const { price, price_before_discount, description, currency, item_rating, liked_count,
             name, options, sex, platform, categories, images, shop_info, post_url } = this.state;
-        let price_, price_before_discount_;
+        let price_, price_before_discount_, price_before_discount_comp;
 
         let shop_name = shop_info.name === undefined ? ("") : (shop_info.name);
 
@@ -65,6 +65,15 @@ class Details extends Component {
             price_ = price;
             price_before_discount_ = price_before_discount;
         }
+
+        price_before_discount_comp = (price_ !== price_before_discount_) && (price_before_discount_ !== 0) ? (
+            <div className="col-6 d-flex justify-content-center">
+                <div class="_3_ISdg">{currency}{price_before_discount_}</div>
+            </div>
+        ) : (
+            <div className="col-6 d-flex justify-content-center">
+            </div>
+        )
 
         let _images = images.map((path, i) => {
             if (i == 0) {
@@ -151,9 +160,7 @@ class Details extends Component {
                                     </div>
                                     <div className="col-auto">
                                         <div className="row">
-                                            <div className="col-6 d-flex justify-content-center">
-                                                <div class="_3_ISdg">{currency}{price_before_discount_}</div>
-                                            </div>
+                                            {price_before_discount_comp}
                                             <div className="col-6 d-flex justify-content-center">
                                                 <div class="_3n5NQx">{currency}{price_}</div>
                                             </div>
