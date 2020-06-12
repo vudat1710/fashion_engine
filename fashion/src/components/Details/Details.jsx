@@ -76,14 +76,14 @@ class Details extends Component {
         )
 
         let _images = images.map((path, i) => {
-            if (i == 0) {
+            if (i === 0) {
                 return (
-                    <div className="tab-pane active" id={`pic-${i}`}><img src={process.env.PUBLIC_URL + "/images/" + platform.split(".")[0] + "/images/" + path} /></div>
+                    <div className="tab-pane active" id={`pic-${i}`}><img src={process.env.PUBLIC_URL + "/images/" + platform.split(".")[0] + "/images/" + path} alt="product"/></div>
                 )
             }
             else {
                 return (
-                    <div className="tab-pane" id={`pic-${i}`}><img src={process.env.PUBLIC_URL + "/images/" + platform.split(".")[0] + "/images/" + path} /></div>
+                    <div className="tab-pane" id={`pic-${i}`}><img src={process.env.PUBLIC_URL + "/images/" + platform.split(".")[0] + "/images/" + path} alt="product"/></div>
                 )
             }
         })
@@ -120,14 +120,14 @@ class Details extends Component {
         })
 
         let miniImages = images.map((path, i) => {
-            if (i == 0) {
+            if (i === 0) {
                 return (
-                    <li className="active"><a data-target={`#pic-${i}`} data-toggle="tab"><img src={process.env.PUBLIC_URL + "/images/" + platform.split(".")[0] + "/images/" + path} /></a></li>
+                    <li className="active"><a data-target={`#pic-${i}`} data-toggle="tab"><img src={process.env.PUBLIC_URL + "/images/" + platform.split(".")[0] + "/images/" + path} alt="product"/></a></li>
                 )
             }
             else {
                 return (
-                    <li><a data-target={`#pic-${i}`} data-toggle="tab"><img src={process.env.PUBLIC_URL + "/images/" + platform.split(".")[0] + "/images/" + path} /></a></li>
+                    <li><a data-target={`#pic-${i}`} data-toggle="tab"><img src={process.env.PUBLIC_URL + "/images/" + platform.split(".")[0] + "/images/" + path} alt="product"/></a></li>
                 )
             }
         })
