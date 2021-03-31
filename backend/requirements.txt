@@ -1,4 +1,4 @@
-lxml==4.4.1
+lxml==4.6.3
 fastai==1.0.61
 pandas==0.23.3
 Flask==1.0.2
