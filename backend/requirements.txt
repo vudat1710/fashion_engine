@@ -2,7 +2,7 @@ lxml==4.4.1
 fastai==1.0.61
 pandas==0.23.3
 Flask==1.0.2
-numpy==1.16.2
+numpy==1.22.0
 pysolr==3.8.1
 Werkzeug==0.16.0
 faiss_cpu==1.6.3
